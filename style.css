@@ -1,0 +1,232 @@
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Roboto:wght@400;500&display=swap");
+
+/* ----- Общие параметры ----- */
+body {
+  margin: 0;
+  font-family: "Roboto", sans-serif;
+  color: #f5f5f5;
+  background: linear-gradient(rgba(0,0,0,0.45),rgba(0,0,0,0.7)),
+    url("los-santos-neon.jpg") no-repeat top center / cover;
+  background-attachment: fixed;
+  overflow-x: hidden;
+}
+*, *::before, *::after { box-sizing: border-box; }
+
+/* ===== Мобильный фон ===== */
+.mobile-bg {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background-image: url("neon-garage-bg.jpg");
+  background-size: cover;
+  background-position: center;
+}
+@media (max-width:768px){
+  body{ background:none!important;}
+  .mobile-bg{display:block;}
+}
+
+/* ===== HEADER ===== */
+header {
+  text-align: center;
+  padding: 120px 20px;
+}
+header p {
+  letter-spacing: 6px; text-transform: uppercase; color:#ddd;
+  opacity:0; animation: fadeIn 1.5s ease forwards 0.8s;
+}
+header h1 {
+  font-family: "Orbitron", sans-serif;
+  font-size: 90px; color:#fff;
+  opacity:0; transform:translateY(40px);
+  animation: slideUpFade 1.6s ease forwards;
+  text-shadow:0 0 25px #ff0000;
+}
+
+/* 🔧 Анимация и подсветка ключа */
+.wrench-animation {
+  margin-top: 100px;
+  width: 200px;
+  height: 200px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  filter: drop-shadow(0 0 25px rgba(255, 26, 26, 0.75));
+  animation: glowPulse 3s ease-in-out infinite;
+}
+.wrench {
+  animation: spin 6s linear infinite;
+}
+.wrench img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* 🔥 Keyframes */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+@keyframes glowPulse {
+  0%, 100% { filter: drop-shadow(0 0 20px rgba(255, 0, 0, 0.9)); }
+  50% { filter: drop-shadow(0 0 35px rgba(255, 26, 26, 1)); }
+}
+@keyframes slideUpFade { to{opacity:1;transform:translateY(0);} }
+@keyframes fadeIn { to{opacity:1;} }
+
+/* ----- Языковые кнопки ----- */
+.lang-switcher {
+  position: fixed; top:15px; right:15px; z-index:999; display:flex; gap:10px;
+}
+.lang-btn {
+  font-family:'Orbitron',sans-serif;
+  background:#000; color:#fff;
+  border:2px solid #fff; padding:6px 14px;
+  cursor:pointer; font-size:13px; border-radius:8px;
+  transition:.3s; letter-spacing:1px;
+  box-shadow:0 0 6px rgba(255,26,26,.4);
+}
+.lang-btn:hover,
+.lang-btn.active {
+  background:#ff1a1a; border-color:#ff1a1a; color:#fff;
+  box-shadow:0 0 15px #ff1a1a; transform:scale(1.05);
+}
+
+/* ===== Блок “Наши услуги” ===== */
+section { padding:60px 20px; max-width:1100px; margin:0 auto; }
+h2 {
+  text-align:center; font-family:"Orbitron",sans-serif;
+  color:#fff; font-size:32px; margin-bottom:40px;
+  text-shadow:0 0 10px rgba(255,0,0,.7);
+}
+.services { display:flex; flex-wrap:wrap; justify-content:center; gap:30px; }
+
+/* 💻 ПК‑карточки */
+@media (min-width:769px){
+  .service-card {
+    background:rgba(0,0,0,.55);
+    border:1px solid rgba(255,0,0,.2);
+    border-radius:15px;
+    width:320px; padding:28px 22px;
+    transition:.3s ease;
+    box-shadow:0 0 10px rgba(255,0,0,.25);
+    backdrop-filter:blur(6px);
+  }
+  .service-card h3 {
+    color:#ff1a1a; font-size:20px; font-weight:700;
+    margin-bottom:14px; text-shadow:0 0 10px rgba(255,26,26,.6);
+  }
+  .service-card p {
+    color:#fff; font-size:17px; line-height:1.5;
+  }
+  .service-card:hover {
+    transform:translateY(-5px);
+    border:1px solid rgba(255,26,26,.9);
+    box-shadow:0 0 25px rgba(255,26,26,.8);
+    background:rgba(0,0,0,.7);
+  }
+}
+
+/* 📱 Мобильные карточки */
+@media (max-width:768px){
+  .services{ flex-direction:column; align-items:center; gap:18px;}
+  .service-card{
+    width:90%; background:rgba(0,0,0,.55);
+    border:1px solid rgba(255,255,255,.1);
+    border-radius:15px; padding:20px; text-align:center;
+    backdrop-filter:blur(6px); box-shadow:0 0 12px rgba(0,0,0,.6);
+  }
+  .service-card h3{ color:#ff2a2a; font-size:22px;}
+}
+
+/* ===== Контакты и Карты ===== */
+.contact{text-align:center;}
+.contact a{ color:#ff1a1a; font-weight:600; text-decoration:none;}
+.contact a:hover{ color:#ff3a3a;}
+.hours p{margin:5px 0;}
+
+/* 💻 Карта ПК */
+#map-desktop {
+  display:block; width:100%; max-width:900px;
+  margin:40px auto; border-radius:12px; overflow:hidden;
+  aspect-ratio:16/9; box-shadow:0 0 25px rgba(255,0,0,.4);
+}
+#map-desktop iframe{ width:100%; height:100%; border:0; }
+
+/* 📱 Карта мобильная */
+#map-mobile{ display:none; }
+@media (max-width:768px){
+  #map-desktop{ display:none!important; }
+  #map-mobile{
+    display:block!important; width:100%; max-width:100%;
+    margin:20px auto; border-radius:12px; overflow:hidden;
+    aspect-ratio:3/4;
+  }
+  #map-mobile iframe{ width:100%; height:100%; border:0; }
+}
+
+/* ===== FOOTER ===== */
+footer {
+  text-align:center;
+  background:rgba(0,0,0,0.6);
+  color:#ccc; padding:20px; font-size:14px; margin-top:60px;
+}
+
+/* ===== 📱 Мобильная настройка заголовка и кнопок ===== */
+@media (max-width: 768px) {
+  header {
+    padding: 60px 10px;
+    text-align: center;
+  }
+
+  header h1 {
+    font-size: clamp(38px, 9vw, 52px);
+    line-height: 1.05;
+    letter-spacing: 2px;
+    text-shadow: 0 0 18px #ff0000, 0 0 28px rgba(255, 0, 0, 0.5);
+  }
+
+  header p {
+    font-size: 0.9rem;
+    letter-spacing: 4px;
+    margin-bottom: 10px;
+  }
+
+  /* Центрируем кнопки */
+  .lang-switcher {
+    position: fixed;
+    top: 15px;
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+    z-index: 999;
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+  }
+
+  .lang-btn {
+    padding: 6px 14px;
+    font-size: 13px;
+    border-radius: 10px;
+    box-shadow: 0 0 8px rgba(255, 26, 26, 0.5);
+  }
+  .lang-btn.active,
+  .lang-btn:hover {
+    background: #ff1a1a;
+    border-color: #ff1a1a;
+    box-shadow: 0 0 14px rgba(255, 26, 26, 0.9);
+    transform: scale(1.05);
+  }
+
+  /* 🔧 Уменьшенный ключ */
+  .wrench-animation {
+    margin-top: 60px;
+    width: 130px;
+    height: 130px;
+  }
+}
